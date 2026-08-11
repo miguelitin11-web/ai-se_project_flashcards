@@ -15,3 +15,7 @@ This is a flashcard app built for learning purposes, where users create and revi
 
 1. Languages: HTML, CSS, JavaScript
 2. Tools/Platforms: TripleTen platform, VS Code, Git, GitHub
+
+## Deployed Site
+
+Check out [my flashcard app](https://miguelitin11-web.github.io/ai-se_project_flashcards/)
