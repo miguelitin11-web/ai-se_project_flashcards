@@ -13,6 +13,21 @@
   align-items: center;
   padding-bottom: 20px;
 }
+.gallery__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: start;
+  padding-bottom: 20px;
+}
+
+.gallery {
+  display: block;
+  gap: 20px;
+}
 
 .gallery {
   flex-wrap: wrap;
@@ -34,4 +49,26 @@
   font-weight: 700;
   font-size: 24px;
   flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .gallery__title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .gallery__list {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .gallery__new-card-btn {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 180px;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+  }
 }

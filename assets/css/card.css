@@ -1,7 +1,8 @@
 .card {
   background-color: #64d583;
-  width: 325px;
-  height: 205px;
+  width: 100%;
+  max-width: 325px;
+  aspect-ratio: 325 / 205;
   border-radius: 20px;
   display: flex;
   box-sizing: border-box;
