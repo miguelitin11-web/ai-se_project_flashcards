@@ -26,19 +26,17 @@
 
 .gallery {
   display: block;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
   gap: 20px;
-}
-
-.gallery {
-  flex-wrap: wrap;
-  gap: 20px;
-  display: flex;
 }
 
 .gallery__new-card-btn {
   cursor: pointer;
-  width: 325px;
-  height: 205px;
+  width: 100%;
+  max-width: 325px;
+  aspect-ratio: 325 / 205;
   border-radius: 20px;
   display: flex;
   box-sizing: border-box;
@@ -49,6 +47,8 @@
   font-weight: 700;
   font-size: 24px;
   flex-shrink: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 @media (max-width: 600px) {
