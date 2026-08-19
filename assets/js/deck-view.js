@@ -26,15 +26,15 @@ export function renderDeckView(deck) {
     const actions = document.createElement("div");
     actions.className = "deck-view__card-actions";
 
-    const flipButton = document.createElement("button");
-    flipButton.type = "button";
-    flipButton.className = "deck-view__card-btn deck-view__card-btn_type_flip";
-    flipButton.setAttribute("aria-label", `Flip card ${card.id}`);
+      const flipButton = document.createElement("button");
+      flipButton.type = "button";
+      flipButton.className = "card__btn card__btn_type_flip";
+      flipButton.setAttribute("aria-label", `Flip card ${card.id}`);
 
-    const deleteButton = document.createElement("button");
-    deleteButton.type = "button";
-    deleteButton.className = "deck-view__card-btn deck-view__card-btn_type_delete";
-    deleteButton.setAttribute("aria-label", `Delete card ${card.id}`);
+      const deleteButton = document.createElement("button");
+      deleteButton.type = "button";
+      deleteButton.className = "card__btn card__btn_type_delete";
+      deleteButton.setAttribute("aria-label", `Delete card ${card.id}`);
 
     let isFlipped = false;
 

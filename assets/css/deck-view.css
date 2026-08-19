@@ -36,6 +36,9 @@
 .deck-view__practice-btn {
   background-color: #1a1a1a;
   color: #fff;
+  margin-bottom: 4px;
+  background-image: linear-gradient(180deg, rgba(26,26,26,1), rgba(26,26,26,0.9));
+  background-blend-mode: overlay;
 }
 
 .deck-view__new-card-btn {

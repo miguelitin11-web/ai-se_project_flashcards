@@ -99,3 +99,28 @@
 .card__carousel_color_green {
   background-color: #64d583;
 }
+
+/* Shared card button styles (used for delete and flip) */
+.card__btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+.card__btn_type_delete {
+  background-image: url(../images/delete.svg);
+}
+
+.card__btn_type_flip {
+  background-image: url(../images/flip.svg);
+}
+
+.card__btn:hover {
+  opacity: 1;
+}
