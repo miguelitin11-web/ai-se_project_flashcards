@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__title {
+  margin: 0;
+}
+
+.header__link {
+  color: #1a1a1a;
+  text-decoration: none;
+  cursor: pointer;
+}

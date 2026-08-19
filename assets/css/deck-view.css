@@ -1,0 +1,105 @@
+.deck-view {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.deck-view__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.deck-view__title {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.deck-view__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.deck-view__practice-btn,
+.deck-view__new-card-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.deck-view__practice-btn {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.deck-view__new-card-btn {
+  background-color: #d9d9d9;
+  color: #1a1a1a80;
+}
+
+.deck-view__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.deck-view__card {
+  background-color: #64d583;
+  border-radius: 20px;
+  min-height: 230px;
+  padding: 20px 20px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color 0.2s ease;
+}
+
+.deck-view__card_flipped {
+  background-color: #fff;
+}
+
+.deck-view__card-text {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.deck-view__card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.deck-view__card-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+.deck-view__card-btn_type_flip {
+  background-image: url(../images/flip.svg);
+}
+
+.deck-view__card-btn_type_delete {
+  background-image: url(../images/delete.svg);
+}

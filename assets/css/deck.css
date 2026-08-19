@@ -1,0 +1,101 @@
+.deck {
+  background-color: #64d583;
+  width: 325px;
+  height: 205px;
+  border-radius: 20px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.deck__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.deck_color_blue {
+  background-color: #91a8f9;
+}
+
+.deck_color_orange {
+  background-color: #ee955e;
+}
+
+.deck_color_pink {
+  background-color: #ee92d7;
+}
+
+.deck_color_purple {
+  background-color: #aa8ef0;
+}
+
+.deck_color_yellow {
+  background-color: #f5d770;
+}
+
+.deck_color_default,
+.deck_color_green {
+  background-color: #64d583;
+}
+
+.deck__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.deck__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck__count {
+  margin: 0;
+}
+
+.deck__delete-btn {
+  background-color: transparent;
+  opacity: 50%;
+  border: none;
+  width: 24px;
+  height: 24px;
+  background-image: url(../images/delete.svg);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.deck__delete-btn:hover {
+  opacity: 100%;
+  text-decoration: underline;
+}
+
+.card__carousel_color_blue {
+  background-color: #91a8f9;
+}
+
+.card__carousel_color_orange {
+  background-color: #ee955e;
+}
+
+.card__carousel_color_pink {
+  background-color: #ee92d7;
+}
+
+.card__carousel_color_purple {
+  background-color: #aa8ef0;
+}
+
+.card__carousel_color_yellow {
+  background-color: #f5d770;
+}
+
+.card__carousel_color_default,
+.card__carousel_color_green {
+  background-color: #64d583;
+}

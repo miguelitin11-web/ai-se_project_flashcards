@@ -22,12 +22,10 @@ export function createDeckEl(item) {
   clonedElement.querySelector(".deck__count").textContent =
     getCardsCountText(item);
   const deckLink = clonedElement.querySelector(".deck__link");
-  deckLink.href = `#carousel/${item.id}`;
+  deckLink.href = `#deck/${item.id}`;
 
   deckLink.addEventListener("click", () => {
     currentDeckID = item.id;
-    console.log("clicked deck id:", item.id);
-    console.log("currentDeckID:", currentDeckID);
   });
 
   return clonedElement;

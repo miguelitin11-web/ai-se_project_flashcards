@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Educational Flashcards</title>
-    <link rel="stylesheet" href="assets/vendor/normalize.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -41,6 +40,20 @@
           </template>
         </ul>
         <button class="decks__new-deck-btn" type="button">+ New Deck</button>
+      </section>
+      <section id="deck-view" class="deck-view" aria-live="polite">
+        <div class="deck-view__header">
+          <h2 class="deck-view__title">Deck</h2>
+          <div class="deck-view__actions">
+            <button class="deck-view__practice-btn" type="button">
+              Practice
+            </button>
+            <button class="deck-view__new-card-btn" type="button">
+              + New Card
+            </button>
+          </div>
+        </div>
+        <ul class="deck-view__list"></ul>
       </section>
       <section class="carousel" id="carousel">
         <h2 class="carousel__title">HTML Tags Deck &middot; 1/10</h2>

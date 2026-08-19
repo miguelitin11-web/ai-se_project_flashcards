@@ -1,4 +1,5 @@
 import { renderCarouselView, renderDeckEl } from "./carousel.js";
+import { renderDeckView } from "./deck-view.js";
 import decks from "./decks.js";
 
 /**
@@ -15,12 +16,14 @@ const homeSection = document.querySelector("#home");
 const notFoundSection = document.querySelector("#not-found");
 const mainSection = document.querySelector(".page__main-content");
 const carouselSection = document.querySelector("#carousel");
+const deckViewSection = document.querySelector("#deck-view");
 
 function renderHomeView() {
   mainSection.classList.remove("page__main-content_location_carousel");
   homeSection.style.display = "flex";
   notFoundSection.style.display = "none";
   carouselSection.style.display = "none";
+  deckViewSection.style.display = "none";
 }
 
 function renderNotFoundView() {
@@ -28,6 +31,7 @@ function renderNotFoundView() {
   homeSection.style.display = "none";
   notFoundSection.style.display = "flex";
   carouselSection.style.display = "none";
+  deckViewSection.style.display = "none";
 }
 
 function router() {
@@ -36,6 +40,22 @@ function router() {
   if (hash === "home" || hash === "") {
     renderHomeView();
     return;
+  }
+
+  if (hash.startsWith("deck/")) {
+    const parts = hash.split("/");
+    const deckId = parts[1];
+    const deck = getDeckByID(deckId);
+
+    if (deck) {
+      mainSection.classList.remove("page__main-content_location_carousel");
+      renderDeckView(deck);
+      deckViewSection.style.display = "flex";
+      homeSection.style.display = "none";
+      notFoundSection.style.display = "none";
+      carouselSection.style.display = "none";
+      return;
+    }
   }
 
   // Handle carousel routes like: #carousel/<deck-id>
@@ -50,6 +70,7 @@ function router() {
       carouselSection.style.display = "flex";
       homeSection.style.display = "none";
       notFoundSection.style.display = "none";
+      deckViewSection.style.display = "none";
       return;
     }
   }

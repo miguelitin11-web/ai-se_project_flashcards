@@ -1,0 +1,16 @@
+.nav__links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav__link {
+  display: contents;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
