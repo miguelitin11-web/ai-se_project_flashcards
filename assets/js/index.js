@@ -2,6 +2,19 @@ import { renderCarouselView, renderDeckEl } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import decks from "./decks.js";
 
+let currentDeck = null;
+
+const practiceButtonGlobal = document.querySelector(
+  ".deck-view__practice-btn"
+);
+if (practiceButtonGlobal) {
+  practiceButtonGlobal.addEventListener("click", () => {
+    if (currentDeck) {
+      window.location.hash = `#carousel/${currentDeck.id}`;
+    }
+  });
+}
+
 /**
  * Retrieves a deck object by its ID from the decks array.
  *
@@ -49,8 +62,9 @@ function router() {
 
     if (deck) {
       mainSection.classList.remove("page__main-content_location_carousel");
+      currentDeck = deck;
       renderDeckView(deck);
-      deckViewSection.style.display = "flex";
+      deckViewSection.style.display = "block";
       homeSection.style.display = "none";
       notFoundSection.style.display = "none";
       carouselSection.style.display = "none";

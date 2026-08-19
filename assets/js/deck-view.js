@@ -63,7 +63,7 @@ export function renderDeckView(deck) {
   deckViewList.append(...listItems);
 
   practiceButton.onclick = () => {
-    window.location.hash = `#carousel/${deck.id}`;
+    // Practice navigation handled globally in index.js to avoid duplicate listeners
   };
 
   newCardButton.onclick = () => {
