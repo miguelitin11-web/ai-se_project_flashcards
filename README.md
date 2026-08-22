@@ -48,6 +48,10 @@ This is a flashcard app built for learning purposes, where users create and revi
 
 Check out [my flashcard app](https://miguelitin11-web.github.io/ai-se_project_flashcards/)
 
+## Project Pitch Video
+
+Check out [this video](project and some challenges I faced while building it.https://drive.google.com/file/d/1yQpw10ivCQrdXMjQ7OF_xZ-JVcmXa-P9/view?usp=drive_link), where I describe my project and some challenges I faced while building it.
+
 ## Recent Updates (Part 5 - Responsive Design)
 
 - Implemented responsive design for all views (home, open deck, carousel)
