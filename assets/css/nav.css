@@ -13,4 +13,15 @@
   text-decoration: none;
   color: black;
   cursor: pointer;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .nav__links {
+    gap: 12px;
+  }
+
+  .nav__link {
+    font-size: 14px;
+  }
 }

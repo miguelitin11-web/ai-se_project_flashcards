@@ -11,6 +11,10 @@
   padding: 20px;
   position: relative;
   flex-shrink: 0;
+  box-shadow:
+    0px 2px 8px 0px #0000001a,
+    -1px 2px 2px 0px #ffffffb2 inset,
+    1px -1px 2px 0px #00000040 inset;
 }
 
 .card__link {
@@ -76,6 +80,21 @@
   text-decoration: underline;
 }
 
+.card__open-btn {
+  background-color: transparent;
+  opacity: 50%;
+  border: none;
+  width: 24px;
+  height: 24px;
+  background-image: url(../images/open.svg);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.card__open-btn:hover {
+  opacity: 100%;
+}
+
 .card__carousel_color_blue {
   background-color: #91a8f9;
 }
@@ -124,4 +143,19 @@
 
 .card__btn:hover {
   opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .card__title {
+    font-size: 18px;
+  }
+
+  .card__count {
+    font-size: 14px;
+  }
 }

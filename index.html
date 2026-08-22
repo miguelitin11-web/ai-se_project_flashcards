@@ -27,38 +27,43 @@
     <main class="page__main-content">
       <section id="home" class="gallery">
         <h2 class="gallery__title">My Decks</h2>
-        <ul class="gallery__list">
-          <template id="template">
-            <li class="card card_color_green">
-              <h3 class="card__title"></h3>
-              <a class="card__link" href="#"></a>
-              <div class="card__row">
-                <p class="card__count"></p>
-                <button class="card__delete-btn" type="button"></button>
-              </div>
-            </li>
-          </template>
-          <template id="card-template">
-            <li class="card">
-              <h3 class="card__title"></h3>
-              <div class="card__row">
-                <button
-                  class="card__open-btn"
-                  type="button"
-                  aria-label="Open deck"
-                ></button>
-                <button
-                  class="card__delete-btn"
-                  type="button"
-                  aria-label="Delete deck"
-                ></button>
-              </div>
-            </li>
-          </template>
-        </ul>
-        <button class="gallery__new-card-btn" type="button">+ New Deck</button>
+        <div class="wrapping-row">
+          <ul class="gallery__list wrapping-row__display-contents">
+            <template id="template">
+              <li class="card card_color_green">
+                <h3 class="card__title"></h3>
+                <a class="card__link" href="#"></a>
+                <div class="card__row">
+                  <p class="card__count"></p>
+                  <button class="card__delete-btn" type="button"></button>
+                </div>
+              </li>
+            </template>
+            <template id="card-template">
+              <li class="card">
+                <h3 class="card__title"></h3>
+                <div class="card__row">
+                  <button
+                    class="card__open-btn"
+                    type="button"
+                    aria-label="Open deck"
+                  ></button>
+                  <button
+                    class="card__delete-btn"
+                    type="button"
+                    aria-label="Delete deck"
+                  ></button>
+                </div>
+              </li>
+            </template>
+          </ul>
+
+          <button class="gallery__new-card-btn" type="button">
+            + New Deck
+          </button>
+        </div>
       </section>
-      <!-- New section copied from home for the feature (per lesson) -->
+
       <section id="deck-feature" class="gallery">
         <div class="gallery__header">
           <h2 class="gallery__title"></h2>
@@ -100,18 +105,13 @@
               class="carousel__btn carousel__btn_type_right"
               aria-label="right button"
             ></button>
+            <button
+              class="carousel__btn carousel__btn_type_flip"
+              aria-label="flip button"
+            ></button>
           </div>
-          <button
-            class="carousel__btn carousel__btn_type_flip"
-            aria-label="flip button"
-          ></button>
         </div>
       </section>
-      <section id="about" class="about">
-        <h2 class="about__title">About</h2>
-        <p class="about__text">This is a small flashcard app built for learning web development: HTML, CSS and JavaScript.</p>
-      </section>
-
       <section id="not-found" class="not-found">
         <h2 class="not-found__status-code">404</h2>
         <p class="not-found__text">Sorry, nothing found!</p>

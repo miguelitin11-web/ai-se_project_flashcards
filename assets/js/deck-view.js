@@ -4,10 +4,16 @@ const deckViewTitle = document.querySelector(".deck-view__title");
 const deckViewList = document.querySelector(".deck-view__list");
 const practiceButton = document.querySelector(".deck-view__practice-btn");
 const newCardButton = document.querySelector(".deck-view__new-card-btn");
+const pageElement = document.querySelector(".page");
 
 export function renderDeckView(deck) {
   if (!deckViewTitle || !deckViewList || !practiceButton || !newCardButton) {
     return;
+  }
+
+  // Remove the page_no-mobile-bar class to make the mobile bar visible
+  if (pageElement) {
+    pageElement.classList.remove("page_no-mobile-bar");
   }
 
   deckViewTitle.textContent = deck.name;
@@ -26,15 +32,15 @@ export function renderDeckView(deck) {
     const actions = document.createElement("div");
     actions.className = "deck-view__card-actions";
 
-      const flipButton = document.createElement("button");
-      flipButton.type = "button";
-      flipButton.className = "card__btn card__btn_type_flip";
-      flipButton.setAttribute("aria-label", `Flip card ${card.id}`);
+    const flipButton = document.createElement("button");
+    flipButton.type = "button";
+    flipButton.className = "card__btn card__btn_type_flip";
+    flipButton.setAttribute("aria-label", `Flip card ${card.id}`);
 
-      const deleteButton = document.createElement("button");
-      deleteButton.type = "button";
-      deleteButton.className = "card__btn card__btn_type_delete";
-      deleteButton.setAttribute("aria-label", `Delete card ${card.id}`);
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "card__btn card__btn_type_delete";
+    deleteButton.setAttribute("aria-label", `Delete card ${card.id}`);
 
     let isFlipped = false;
 
