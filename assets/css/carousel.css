@@ -26,7 +26,7 @@
 
 .carousel__main {
   display: grid;
-  grid-template-columns: 36px 257px 36px;
+  grid-template-columns: 36px 380px 36px;
   grid-template-rows: 1fr auto;
   grid-template-areas:
     "left card right"
@@ -170,7 +170,6 @@
   }
 
   .carousel__card {
-    width: 100%;
     max-width: 300px;
     height: auto;
     aspect-ratio: 353 / 420;
