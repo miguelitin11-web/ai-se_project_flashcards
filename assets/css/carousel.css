@@ -26,14 +26,14 @@
 
 .carousel__main {
   display: grid;
-  grid-template-columns: 44px 1fr 44px;
+  grid-template-columns: 36px 257px 36px;
   grid-template-rows: 1fr auto;
   grid-template-areas:
     "left card right"
     "left flip right";
   align-items: center;
   justify-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 
 .carousel__btn {
@@ -96,8 +96,8 @@
 }
 
 .carousel__card {
-  width: 440px;
-  height: 300px;
+  width: 353px;
+  height: 420px;
   background-color: #64d583;
   display: flex;
   align-items: center;
@@ -112,8 +112,28 @@
     1px -1px 2px 0px #00000040 inset;
 }
 
+.card__carousel_color_yellow {
+  background-color: #f5d770;
+}
+
+.card__carousel_color_orange {
+  background-color: #ee955e;
+}
+
+.card__carousel_color_purple {
+  background-color: #aa8ef0;
+}
+
+.card__carousel_color_pink {
+  background-color: #ee92d7;
+}
+
 .carousel__card_color_white {
-  background-color: #fff;
+  background-color: #ee92d7;
+}
+
+.card__carousel_color_blue {
+  background-color: #91a8f9;
 }
 
 .carousel__card-text {
@@ -152,7 +172,7 @@
     width: 100%;
     max-width: 300px;
     height: auto;
-    aspect-ratio: 300 / 200;
+    aspect-ratio: 353 / 420;
     padding: 16px;
   }
 
