@@ -30,6 +30,7 @@ const carouselSection = document.querySelector("#carousel");
 const deckViewSection = document.querySelector("#deck-view");
 const pageElement = document.querySelector(".page");
 const deckFeatureSection = document.querySelector("#deck-feature");
+const newDeckViewSection = document.querySelector("#new-deck-view");
 
 // Helper function to show a view and hide others
 function showView(currentSection, displayValue = "block") {
@@ -39,6 +40,7 @@ function showView(currentSection, displayValue = "block") {
     carouselSection,
     deckViewSection,
     deckFeatureSection,
+    newDeckViewSection,
   ];
 
   allSections.forEach((section) => {
@@ -58,6 +60,13 @@ function renderHomeView() {
   showView(homeSection, "flex");
 }
 
+const newDeckBtn = document.querySelector("#home .gallery__new-card-btn");
+if (newDeckBtn) {
+  newDeckBtn.addEventListener("click", () => {
+    window.location.hash = "#new-deck-view";
+  });
+}
+
 function renderNotFoundView() {
   mainSection.classList.remove("page__main-content_location_carousel");
   pageElement.classList.add("page_no-mobile-bar");
@@ -69,6 +78,11 @@ function router() {
 
   if (hash === "home" || hash === "") {
     renderHomeView();
+    return;
+  }
+
+  if (hash === "new-deck-view") {
+    showView(newDeckViewSection);
     return;
   }
 
