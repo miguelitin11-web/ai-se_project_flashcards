@@ -2,9 +2,7 @@
 
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
 
-// NOTE: Import your decks array here.
-// Adjust the relative path ('./decks.js') to match your actual folder structure.
-import { decks } from "./decks.js";
+import decks from "./decks.js";
 
 /**
  * Converts a string to a URL-safe slug: lowercase with any run of
@@ -38,52 +36,92 @@ function normalizeColor(color) {
 }
 
 // --- TASK 1: Grab DOM References ---
-const form = document.querySelector("form");
-const submitBtn = document.querySelector('button[type="submit"]');
-const textarea = document.querySelector("textarea");
+const form = document.querySelector("#new-deck-form");
+const submitBtn = document.querySelector(".create-the-deck-btn");
+const textarea = document.querySelector("#textarea-json");
+
+// Modal elements
+const errorModal = document.querySelector("#error-modal");
+const modalCloseBtn = document.querySelector(".modal__close");
+const modalErrorEl = document.querySelector(".modal__error");
 
 // Task 1: Enable the submit button by changing its disabled property
 export function disableSubmitBtn() {
-  submitBtn.disabled = false;
+  if (submitBtn) submitBtn.disabled = false;
+}
+
+// Close button: hide modal
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener("click", () => {
+    if (errorModal) errorModal.classList.remove("modal_visible");
+    if (modalErrorEl) modalErrorEl.textContent = "";
+  });
+}
+
+function showError(message) {
+  if (modalErrorEl) modalErrorEl.textContent = message;
+  if (errorModal) errorModal.classList.add("modal_visible");
 }
 
 // --- TASK 2: Implementing Form Submission ---
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // 1. Grab form submission data using FormData and Object.fromEntries
-  const formData = new FormData(e.target);
+  const formData = new FormData(form);
   const formValues = Object.fromEntries(formData.entries());
 
-  try {
-    // 2. Clean and process the data
-    // Parse the textarea value into JSON data
-    const jsonData = JSON.parse(formValues.cards || textarea.value);
+  const jsonString = formValues.cards || (textarea && textarea.value);
 
-    // Normalize the color field (assumes input name="color")
-    const cleanColor = normalizeColor(formValues.color);
-
-    // Create a unique ID using slugify and Date.now() (assumes input name="name")
-    const deckName = formValues.name;
-    const uniqueId = `${slugify(deckName)}-${Date.now()}`;
-
-    // 3. Build the final deck object matching the application state shape
-    const newDeck = {
-      id: uniqueId,
-      color: cleanColor,
-      name: deckName,
-      cards: jsonData.cards, // Accesses the cards array inside your JSON data structure
-    };
-
-    // Push the object onto the global decks array
-    decks.push(newDeck);
-
-    // 4. Navigate to the newly created deck view via hash change
-    window.location.hash = "deck/" + uniqueId;
-  } catch (error) {
-    console.error("SyntaxError or TypeError while parsing form data:", error);
-    alert(
-      "Please ensure the pasted text inside the textarea is valid JSON data.",
-    );
+  function parseJSON(jsonString) {
+    try {
+      return JSON.parse(jsonString);
+    } catch (error) {
+      return null;
+    }
   }
+
+  function validateName(name) {
+    if (typeof name != "string" || name.length < 2 || name.length > 80) {
+      return null;
+    }
+    return name;
+  }
+
+  const parsed = parseJSON(jsonString);
+  if (!parsed) {
+    showError("Invalid JSON. Please paste valid JSON for the deck.");
+    return;
+  }
+
+  const name = validateName(parsed.name);
+  if (!name) {
+    showError("Deck name must be a string between 2 and 80 characters.");
+    return;
+  }
+
+  if (!Array.isArray(parsed.cards)) {
+    showError('The "cards" field must be an array.');
+    return;
+  }
+
+  const selectedColor = normalizeColor(formValues.color);
+  if (typeof parsed.color === "string") {
+    if (parsed.color.toLowerCase() !== selectedColor.toLowerCase()) {
+      showError(
+        "The color in the JSON does not match the selected color. Please ensure they match.",
+      );
+      return;
+    }
+  }
+
+  const uniqueId = `${slugify(name)}-${Date.now()}`;
+  const newDeck = {
+    id: uniqueId,
+    color: selectedColor,
+    name: name,
+    cards: parsed.cards,
+  };
+
+  decks.push(newDeck);
+  window.location.hash = "deck/" + uniqueId;
 });
