@@ -1,6 +1,10 @@
 import { renderCarouselView, renderDeckEl } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import decks from "./decks.js";
+import { getDecks } from "./api.js";
+import { showError } from "./new-deck-view.js";
+import { fetchedDecks } from "./decks.js";
+import { deleteDeck } from "./api.js";
 
 let currentDeck = null;
 
@@ -8,7 +12,7 @@ const practiceButtonGlobal = document.querySelector(".deck-view__practice-btn");
 if (practiceButtonGlobal) {
   practiceButtonGlobal.addEventListener("click", () => {
     if (currentDeck) {
-      window.location.hash = `#carousel/${currentDeck.id}`;
+      window.location.hash = `#carousel/${currentDeck._id}`;
     }
   });
 }
@@ -20,7 +24,7 @@ if (practiceButtonGlobal) {
  * @returns {object|undefined} The deck object if found, undefined otherwise
  */
 function getDeckByID(deckId) {
-  return decks.find((deck) => deck.id === deckId);
+  return fetchedDecks.find((deck) => deck._id === deckId);
 }
 
 const homeSection = document.querySelector("#home");
@@ -89,6 +93,7 @@ function router() {
   if (hash.startsWith("deck/")) {
     const parts = hash.split("/");
     const deckId = parts[1];
+    console.log("deckId:", deckId);
     const deck = getDeckByID(deckId);
 
     if (deck) {
@@ -117,9 +122,21 @@ function router() {
   }
   renderNotFoundView();
 }
+document.addEventListener("DOMContentLoaded", () => {
+  getDecks()
+    .then((decks) => {
+      fetchedDecks.push(...decks);
+      decks.forEach(renderDeckEl);
+    })
 
-decks.forEach(renderDeckEl);
+    .catch(() => {
+      showError("Error fetching decks");
+    })
+    .finally(() => {
+      router();
+    });
+});
+
 window.addEventListener("hashchange", router);
-window.addEventListener("DOMContentLoaded", router);
 
 export { decks, getDeckByID };

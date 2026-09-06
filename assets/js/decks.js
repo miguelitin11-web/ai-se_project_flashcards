@@ -435,5 +435,6 @@ const decks = [
     color: "#64d583",
   },
 ];
-
+const fetchedDecks = [];
+export { fetchedDecks };
 export default decks;

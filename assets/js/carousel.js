@@ -10,6 +10,7 @@ function getCarouselTitleString(deck, index) {
 }
 
 export function createDeckEl(item) {
+  console.log(item);
   const deckEl = template.content.querySelector(".card");
   const clonedElement = deckEl.cloneNode(true);
 
@@ -22,10 +23,10 @@ export function createDeckEl(item) {
   clonedElement.querySelector(".card__count").textContent =
     getCardsCountText(item);
   const deckLink = clonedElement.querySelector(".card__link");
-  deckLink.href = `#deck/${item.id}`;
+  deckLink.href = `#deck/${item._id}`;
 
   deckLink.addEventListener("click", () => {
-    currentDeckID = item.id;
+    currentDeckID = item._id;
   });
 
   return clonedElement;
@@ -39,8 +40,21 @@ export function renderDeckEl(item) {
   deckEl.classList.remove("card_color_green");
   deckEl.classList.add(`card_color_${colorName}`);
 
+  function removeDeckByID(deckId) {
+    const index = fetchedDecks.findIndex((deck) => deck._id === deckId);
+    if (index !== -1) {
+      fetchedDecks.splice(index, 1);
+    }
+  }
+
   deleteButton.addEventListener("click", () => {
-    deckEl.remove();
+    deleteDeck(deck._id)
+      .then(() => {
+        deckEl.remove();
+      })
+      .catch((error) => {
+        showError("Error fetching decks");
+      });
   });
 
   deckList.prepend(deckEl);

@@ -35,12 +35,12 @@ export function renderDeckView(deck) {
     const flipButton = document.createElement("button");
     flipButton.type = "button";
     flipButton.className = "card__btn card__btn_type_flip";
-    flipButton.setAttribute("aria-label", `Flip card ${card.id}`);
+    flipButton.setAttribute("aria-label", `Flip card ${card._id}`);
 
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
     deleteButton.className = "card__btn card__btn_type_delete";
-    deleteButton.setAttribute("aria-label", `Delete card ${card.id}`);
+    deleteButton.setAttribute("aria-label", `Delete card ${card._id}`);
 
     let isFlipped = false;
 

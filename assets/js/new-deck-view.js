@@ -125,3 +125,4 @@ form.addEventListener("submit", function (e) {
   decks.push(newDeck);
   window.location.hash = "deck/" + uniqueId;
 });
+export { showError };
