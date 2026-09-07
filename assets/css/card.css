@@ -1,3 +1,4 @@
+/* Keep each deck card proportional to the mock while allowing the grid to flow responsively. */
 .card {
   background-color: #64d583;
   width: 100%;
@@ -17,12 +18,14 @@
     1px -1px 2px 0px #00000040 inset;
 }
 
+/* Create the full-card click area without covering the action buttons. */
 .card__link {
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
+/* Maintain the Figma color variants for each deck tile. */
 .card_color_blue {
   background-color: #91a8f9;
 }
@@ -48,12 +51,14 @@
   background-color: #64d583;
 }
 
+/* Use a clear title scale that matches the card content hierarchy. */
 .card__title {
   margin: 0;
   font-size: 24px;
   font-weight: 700;
 }
 
+/* Keep the title and count aligned at the bottom of the card. */
 .card__row {
   display: flex;
   justify-content: space-between;
@@ -64,6 +69,7 @@
   margin: 0;
 }
 
+/* Keep the delete icon subtle and aligned with the Figma styling. */
 .card__delete-btn {
   background-color: transparent;
   opacity: 50%;
@@ -80,6 +86,7 @@
   text-decoration: underline;
 }
 
+/* Match the open-deck icon with the same spacing as the delete control. */
 .card__open-btn {
   background-color: transparent;
   opacity: 50%;
@@ -95,6 +102,7 @@
   opacity: 100%;
 }
 
+/* Preserve the color palette for the carousel states as well. */
 .card__carousel_color_blue {
   background-color: #91a8f9;
 }
@@ -146,15 +154,18 @@
 }
 
 @media (max-width: 600px) {
+  /* Let the cards expand to fit the mobile width without awkward overflow. */
   .card {
     max-width: 100%;
     padding: 16px;
   }
 
+  /* Reduce the card title to maintain readability on smaller screens. */
   .card__title {
     font-size: 18px;
   }
 
+  /* Fit card metadata to the smaller viewport proportions. */
   .card__count {
     font-size: 14px;
   }

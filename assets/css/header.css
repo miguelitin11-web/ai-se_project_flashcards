@@ -1,15 +1,21 @@
+/* Keep the header aligned with the Figma top bar and avoid a collapsed layout. */
 .header {
+  /* Use a single row with room for the title and nav links. */
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+  /* Add a little breathing room so the text does not crowd the edges. */
+  gap: 16px;
 }
 
+/* Make the app title match the visual hierarchy used in the mock. */
 .header__title {
   margin: 0;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: clamp(2rem, 2vw, 2.5rem);
+  font-weight: 800;
 }
 
+/* Remove the underline and keep the logo visually consistent with the page. */
 .header__link {
   color: #1a1a1a;
   text-decoration: none;
@@ -17,14 +23,17 @@
 }
 
 @media (max-width: 600px) {
+  /* Allow the title and nav to wrap cleanly on smaller screens. */
   .header {
     gap: 12px;
   }
 
+  /* Scale the title proportionally for the mobile layout. */
   .header__title {
     font-size: 20px;
   }
 
+  /* Keep the logo legible without overpowering the nav. */
   .header__link {
     font-size: 16px;
   }

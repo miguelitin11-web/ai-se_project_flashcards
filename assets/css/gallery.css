@@ -1,11 +1,13 @@
+/* Match the Figma section title spacing and scale for the deck gallery. */
 .gallery__title {
   width: 100%;
   margin-top: 0;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   font-weight: 700;
-  font-size: 40px;
+  font-size: clamp(2rem, 2.2vw, 2.5rem);
 }
 
+/* Keep the gallery header in a single row with the practice action. */
 .gallery__header {
   display: flex;
   justify-content: space-between;
@@ -14,58 +16,66 @@
   margin-bottom: 20px;
 }
 
+/* Use a responsive card grid that adapts to the available width without breaking the layout. */
 .gallery__list {
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   align-items: start;
   justify-content: center;
-  justify-items: center;
+  justify-items: stretch;
   width: 100%;
   padding-bottom: 20px;
 }
 
+/* Prevent a forced 4-column grid from creating oversized gaps or overflow. */
 .wrapping-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(325px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  align-items: center;
+  align-items: start;
+  width: 100%;
 }
 
+/* Allow the gallery list to act like the grid children without introducing weird display behavior. */
 .wrapping-row__display-contents {
   display: contents;
 }
 
+/* Keep the gallery section fluid and consistent with the Figma container width. */
 .gallery {
-  display: block;
-  max-width: 1100px;
-  padding: 0 20px;
-  gap: 20px;
+  display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 20px;
 }
 
+/* Make the creation button look like a deck tile instead of a stretched control. */
 .gallery__new-card-btn {
   cursor: pointer;
   width: 100%;
   max-width: 325px;
-  aspect-ratio: 325 / 205;
+  min-height: 205px;
   border-radius: 20px;
   display: flex;
   box-sizing: border-box;
   padding: 20px;
-  background-color: #c5c5c5;
+  background-color: #d9d9d9;
   color: #1a1a1a80;
   border: none;
   font-weight: 700;
   font-size: 24px;
   flex-shrink: 0;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Use the dark CTA button style used in the deck actions. */
 .gallery__practice-btn {
   padding: 12px 20px;
   border: none;
@@ -84,38 +94,42 @@
 }
 
 @media (max-width: 600px) {
+  /* Reduce the section title and spacing for the mobile breakpoint. */
   .gallery__title {
     font-size: 32px;
     margin-bottom: 16px;
   }
 
+  /* Stack the card grid into a single column on small screens. */
   .wrapping-row {
     grid-template-columns: 1fr;
   }
 
+  /* Make the practice button take the full width as shown in the compact layout. */
   .gallery__header {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
   }
 
+  /* Expand the CTA to full width and match the mobile action style. */
   .gallery__practice-btn {
     width: 100%;
     padding: 16px 20px;
     font-size: 18px;
   }
 
+  /* Allow the deck tiles to remain readable and stacked proportionally. */
   .gallery__list {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 12px;
     padding-bottom: 12px;
   }
 
+  /* Keep the add-card tile visually similar to the deck cards while fitting the mobile panel. */
   .gallery__new-card-btn {
     width: 100%;
     max-width: 100%;
-    aspect-ratio: auto;
-    height: auto;
     min-height: 180px;
     font-size: 20px;
     justify-content: center;

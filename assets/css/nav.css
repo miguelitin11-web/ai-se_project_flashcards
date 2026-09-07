@@ -1,26 +1,35 @@
+/* Make the navigation behave like a proper top-level menu instead of a broken text node. */
 .nav__links {
+  /* Keep the links in a single line with a consistent gap. */
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  align-items: center;
+  gap: 28px;
+  /* Remove the default list styling so the nav matches the mock. */
   margin: 0;
   padding: 0;
-  gap: 20px;
   list-style: none;
 }
 
+/* Style the anchor itself as a clickable navigation item. */
 .nav__link {
-  display: contents;
+  /* Ensure the element is an actual inline-flex item rather than collapsing its box. */
+  display: inline-flex;
+  align-items: center;
+  /* Keep the text dark and readable. */
+  color: #1a1a1a;
   text-decoration: none;
-  color: black;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {
+  /* Tighten the mobile link spacing to avoid crowding. */
   .nav__links {
     gap: 12px;
   }
 
+  /* Scale the nav text for the smaller viewport. */
   .nav__link {
     font-size: 14px;
   }

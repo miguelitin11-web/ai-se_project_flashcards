@@ -1,32 +1,43 @@
+/* Keep the overall canvas aligned with the Figma background and content widths. */
 .page {
+  /* Use the light neutral canvas from the design and a centered max width. */
   background-color: #ececec;
+  /* Keep the typography consistent across the app with the same Inter family. */
   font-family: Inter, Arial, Helvetica, sans-serif;
-  padding: 20px 40px 0 40px;
+  /* Add generous but consistent spacing around the main layout frame. */
+  padding: 24px 40px 32px;
+  /* Match the product scale and keep the content visually centered. */
   max-width: 1440px;
   margin: 0 auto;
-  padding-bottom: 32px;
+  /* Stack header, main content, and footer in the expected column flow. */
   display: flex;
   flex-direction: column;
+  /* Ensure the main section fills the viewport height cleanly. */
   min-height: 100vh;
   box-sizing: border-box;
 }
 
+/* Keep the page main region close to the Figma vertical rhythm. */
 .page__main-content {
-  margin-top: 40px;
+  /* Reduce the excessive top spacing so the title sits closer to the header. */
+  margin-top: 32px;
   flex-grow: 1;
-  margin-bottom: 138px;
+  /* Prevent the main content from floating too low above the footer. */
+  margin-bottom: 96px;
 }
 
+/* Maintain a tighter top offset only for the carousel view. */
 .page__main-content_location_carousel {
-  margin-top: 106px;
+  margin-top: 72px;
 }
 
 @media (max-width: 600px) {
+  /* Use the compact mobile spacing from the mock so content stays readable. */
   .page {
-    padding: 12px 16px 0 16px;
-    padding-bottom: 16px;
+    padding: 12px 16px 16px;
   }
 
+  /* Reset the desktop vertical spacing for the small-screen layout. */
   .page__main-content {
     margin-top: 20px;
     margin-bottom: 200px;

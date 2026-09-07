@@ -117,7 +117,10 @@ form.addEventListener("submit", function (e) {
     cards: parsed.cards,
   })
     .then((newDeck) => {
-      fetchedDecks.push(newDeck);
+      fetchedDecks.push({
+        ...newDeck,
+        cards: newDeck.cards.length > 0 ? newDeck.cards : parsed.cards,
+      });
       window.location.hash = "deck/" + newDeck._id;
     })
     .catch(showError);

@@ -3,6 +3,7 @@ import { renderDeckView } from "./deck-view.js";
 import { getDecks } from "./api.js";
 import { showError } from "./new-deck-view.js";
 import { fetchedDecks } from "./decks.js";
+import { getDeckByID } from "./decks.js";
 
 let currentDeck = null;
 
@@ -21,9 +22,6 @@ if (practiceButtonGlobal) {
  * @param {string} deckId - The unique identifier of the deck to retrieve.
  * @returns {object|undefined} The matching deck object or undefined.
  */
-function getDeckByID(deckId) {
-  return fetchedDecks.find((deck) => deck._id === deckId);
-}
 
 const homeSection = document.querySelector("#home");
 const notFoundSection = document.querySelector("#not-found");
@@ -34,6 +32,7 @@ const pageElement = document.querySelector(".page");
 const deckFeatureSection = document.querySelector("#deck-feature");
 const newDeckViewSection = document.querySelector("#new-deck-view");
 const aboutSection = document.querySelector("#about-section");
+const deckList = document.querySelector(".gallery__list");
 
 /**
  * Shows the selected section while hiding all other app views.
@@ -114,6 +113,8 @@ function router() {
 
   if (hash === "home" || hash === "") {
     renderHomeView();
+    deckList.innerHTML = "";
+    fetchedDecks.forEach(renderDeckEl);
     return;
   }
 
@@ -163,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
   getDecks()
     .then((decks) => {
       fetchedDecks.push(...decks);
-      decks.forEach(renderDeckEl);
     })
 
     .catch(() => {
@@ -176,4 +176,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("hashchange", router);
 
-export { getDeckByID };
+export { getDeckByID, deckList };

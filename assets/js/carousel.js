@@ -2,9 +2,10 @@ import { getColorName, hexToString, removeColorClasses } from "./colors.js";
 import { deleteDeck } from "./api.js";
 import { fetchedDecks } from "./decks.js";
 import { showError } from "./new-deck-view.js";
+import { deckList } from "./index.js";
+import { removeDeckByID } from "./decks.js";
 
 const template = document.querySelector("template");
-const deckList = document.querySelector(".gallery__list");
 
 let currentDeckID = null;
 
@@ -43,13 +44,6 @@ export function renderDeckEl(item) {
 
   deckEl.classList.remove("card_color_green");
   deckEl.classList.add(`card_color_${colorName}`);
-
-  function removeDeckByID(deckId) {
-    const index = fetchedDecks.findIndex((deck) => deck._id === deckId);
-    if (index !== -1) {
-      fetchedDecks.splice(index, 1);
-    }
-  }
 
   deleteButton.addEventListener("click", () => {
     deleteDeck(item._id)
