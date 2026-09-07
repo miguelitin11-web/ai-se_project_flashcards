@@ -1,4 +1,7 @@
 import { getColorName, hexToString, removeColorClasses } from "./colors.js";
+import { deleteDeck } from "./api.js";
+import { fetchedDecks } from "./decks.js";
+import { showError } from "./new-deck-view.js";
 
 const template = document.querySelector("template");
 const deckList = document.querySelector(".gallery__list");
@@ -34,6 +37,7 @@ export function createDeckEl(item) {
 
 export function renderDeckEl(item) {
   const deckEl = createDeckEl(item);
+  console.log(deckEl);
   const deleteButton = deckEl.querySelector(".card__delete-btn");
   const colorName = getColorName(item.color);
 
@@ -48,12 +52,16 @@ export function renderDeckEl(item) {
   }
 
   deleteButton.addEventListener("click", () => {
-    deleteDeck(deck._id)
+    deleteDeck(item._id)
       .then(() => {
+        const index = fetchedDecks.findIndex((deck) => deck._id === item._id);
+        if (index !== -1) {
+          fetchedDecks.splice(index, 1);
+        }
         deckEl.remove();
       })
-      .catch((error) => {
-        showError("Error fetching decks");
+      .catch(() => {
+        showError("Error deleting deck");
       });
   });
 

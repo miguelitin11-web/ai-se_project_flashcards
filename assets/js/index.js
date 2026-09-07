@@ -1,10 +1,8 @@
 import { renderCarouselView, renderDeckEl } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
-import decks from "./decks.js";
 import { getDecks } from "./api.js";
 import { showError } from "./new-deck-view.js";
 import { fetchedDecks } from "./decks.js";
-import { deleteDeck } from "./api.js";
 
 let currentDeck = null;
 
@@ -18,10 +16,10 @@ if (practiceButtonGlobal) {
 }
 
 /**
- * Retrieves a deck object by its ID from the decks array.
+ * Retrieves a deck object by its ID from the fetched deck cache.
  *
- * @param {string} deckId - The unique identifier of the deck to retrieve
- * @returns {object|undefined} The deck object if found, undefined otherwise
+ * @param {string} deckId - The unique identifier of the deck to retrieve.
+ * @returns {object|undefined} The matching deck object or undefined.
  */
 function getDeckByID(deckId) {
   return fetchedDecks.find((deck) => deck._id === deckId);
@@ -35,8 +33,15 @@ const deckViewSection = document.querySelector("#deck-view");
 const pageElement = document.querySelector(".page");
 const deckFeatureSection = document.querySelector("#deck-feature");
 const newDeckViewSection = document.querySelector("#new-deck-view");
+const aboutSection = document.querySelector("#about-section");
 
-// Helper function to show a view and hide others
+/**
+ * Shows the selected section while hiding all other app views.
+ *
+ * @param {HTMLElement|null} currentSection - The section to display.
+ * @param {string} [displayValue="block"] - The CSS display mode to apply.
+ * @returns {void}
+ */
 function showView(currentSection, displayValue = "block") {
   const allSections = [
     homeSection,
@@ -45,6 +50,7 @@ function showView(currentSection, displayValue = "block") {
     deckViewSection,
     deckFeatureSection,
     newDeckViewSection,
+    aboutSection,
   ];
 
   allSections.forEach((section) => {
@@ -58,10 +64,26 @@ function showView(currentSection, displayValue = "block") {
   }
 }
 
+/**
+ * Renders the home/gallery view and restores the normal layout.
+ *
+ * @returns {void}
+ */
 function renderHomeView() {
   mainSection.classList.remove("page__main-content_location_carousel");
   pageElement.classList.remove("page_no-mobile-bar");
   showView(homeSection, "flex");
+}
+
+/**
+ * Renders the about view.
+ *
+ * @returns {void}
+ */
+function renderAboutView() {
+  mainSection.classList.remove("page__main-content_location_carousel");
+  pageElement.classList.remove("page_no-mobile-bar");
+  showView(aboutSection, "block");
 }
 
 const newDeckBtn = document.querySelector("#home .gallery__new-card-btn");
@@ -71,17 +93,32 @@ if (newDeckBtn) {
   });
 }
 
+/**
+ * Renders the 404 page when no matching route is found.
+ *
+ * @returns {void}
+ */
 function renderNotFoundView() {
   mainSection.classList.remove("page__main-content_location_carousel");
   pageElement.classList.add("page_no-mobile-bar");
   showView(notFoundSection, "flex");
 }
 
+/**
+ * Routes the app to the correct section based on the current hash.
+ *
+ * @returns {void}
+ */
 function router() {
   const hash = window.location.hash.replace(/^#/, "");
 
   if (hash === "home" || hash === "") {
     renderHomeView();
+    return;
+  }
+
+  if (hash === "about") {
+    renderAboutView();
     return;
   }
 
@@ -139,4 +176,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("hashchange", router);
 
-export { decks, getDeckByID };
+export { getDeckByID };

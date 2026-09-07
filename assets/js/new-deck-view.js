@@ -1,24 +1,7 @@
-// new-deck-view.js
-
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
 
-import decks from "./decks.js";
-
-/**
- * Converts a string to a URL-safe slug: lowercase with any run of
- * non-alphanumeric characters replaced by a single hyphen, and no leading or
- * trailing hyphens.
- *
- * @param {string} str
- * @returns {string}
- */
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+import { addDeck } from "./api.js";
+import { fetchedDecks } from "./decks.js";
 
 /**
  * Returns a consistent lowercase hex color string with a leading "#".
@@ -40,12 +23,20 @@ const form = document.querySelector("#new-deck-form");
 const submitBtn = document.querySelector(".create-the-deck-btn");
 const textarea = document.querySelector("#textarea-json");
 
+if (submitBtn) {
+  submitBtn.disabled = false;
+}
+
 // Modal elements
 const errorModal = document.querySelector("#error-modal");
 const modalCloseBtn = document.querySelector(".modal__close");
 const modalErrorEl = document.querySelector(".modal__error");
 
-// Task 1: Enable the submit button by changing its disabled property
+/**
+ * Enables the create-deck button so the form can be submitted.
+ *
+ * @returns {void}
+ */
 export function disableSubmitBtn() {
   if (submitBtn) submitBtn.disabled = false;
 }
@@ -58,6 +49,12 @@ if (modalCloseBtn) {
   });
 }
 
+/**
+ * Displays a validation or request error in the modal dialog.
+ *
+ * @param {string} message - The error text to show the user.
+ * @returns {void}
+ */
 function showError(message) {
   if (modalErrorEl) modalErrorEl.textContent = message;
   if (errorModal) errorModal.classList.add("modal_visible");
@@ -114,15 +111,16 @@ form.addEventListener("submit", function (e) {
     }
   }
 
-  const uniqueId = `${slugify(name)}-${Date.now()}`;
-  const newDeck = {
-    id: uniqueId,
+  addDeck({
+    name,
     color: selectedColor,
-    name: name,
     cards: parsed.cards,
-  };
-
-  decks.push(newDeck);
-  window.location.hash = "deck/" + uniqueId;
+  })
+    .then((newDeck) => {
+      fetchedDecks.push(newDeck);
+      window.location.hash = "deck/" + newDeck._id;
+    })
+    .catch(showError);
 });
+
 export { showError };

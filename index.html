@@ -63,6 +63,22 @@
           </button>
         </div>
       </section>
+      <section id="about-section" class="about__section">
+        <h2 class="about__title">About this app</h2>
+        <p class="about__text">
+          This flashcard app helps you organize study decks, review questions in
+          a visual carousel, and keep your work synced with a remote API.
+        </p>
+        <pre class="about__code-block"><code>{
+  "name": "Deck Name",
+  "cards": [
+    {
+      "question": "Question 1",
+      "answer": "Answer 1"
+    }
+  ]
+}</code></pre>
+      </section>
 
       <section id="deck-feature" class="gallery">
         <div class="gallery__header">
@@ -190,11 +206,11 @@
           </fieldset>
           <label class="new-deck-view__json-label" for="textarea-json">
             Import deck as JSON
-              <textarea
-                class="new-deck-view__textarea"
-                id="textarea-json"
-                name="cards"
-              ></textarea>
+            <textarea
+              class="new-deck-view__textarea"
+              id="textarea-json"
+              name="cards"
+            ></textarea>
           </label>
           <button class="create-the-deck-btn" type="submit" disabled>
             Create the Deck
